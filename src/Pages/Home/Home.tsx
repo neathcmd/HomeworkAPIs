@@ -32,7 +32,7 @@ const Home = () => {
             </p>
             <Link to="/product">
               <button
-                className="mt-6 px-6 py-3 bg-white text-gray-900 font-semibold rounded-full shadow-md hover:border-2 hover:border-gray-300 hover:text-white hover:bg-transparent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 active:scale-95 transition-all duration-300 ease-in-out transform cursor-pointer"
+                className="mt-6 px-6 py-3 bg-white text-gray-900 font-semibold rounded shadow-md hover:border-2 hover:border-gray-300 hover:text-white hover:bg-transparent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 active:scale-95 transition-all duration-300 ease-in-out transform cursor-pointer"
                 aria-label="Shop our new collection now"
               >
                 Shop Now
