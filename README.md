@@ -1,54 +1,130 @@
-# React + TypeScript + Vite
+# 🛒 FakeStore
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to FakeStore — your go-to demo eCommerce experience! This project was created to simulate a real online shopping site while showcasing modern front-end web development practices.
 
-Currently, two official plugins are available:
+## 📖 About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+FakeStore is a mock eCommerce website built using:
 
-## Expanding the ESLint configuration
+- ⚛️ React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📘 TypeScript
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- 🎨 Tailwind CSS
+
+While the products are fake, the functionality is very real. This app provides a hands-on example of how a professional shopping user interface works, from browsing to adding items to the cart.
+
+Whether you're a developer looking to test and learn, or just curious about how eCommerce platforms are built, FakeStore is designed to be a fun, realistic, and functional learning tool.
+
+## 🚀 Features
+
+- Responsive UI built with Tailwind CSS
+
+- Component-based architecture using React
+
+- Type-safe development with TypeScript
+
+- Interactive shopping cart experience
+
+- Ideal for learning and portfolio projects
+
+- APIs Integration
+
+## 📡 API Integration
+
+This project fetches product data from the FakeStore API to simulate a real eCommerce experience.
+
+### 🔗 API Endpoint Used
+
+- https://fakestoreapi.com/products — Retrieves a list of all products
+
+### 🧠 Fetching Logic
+
+We use the native fetch method directly inside the Product component to retrieve data when the component mounts.
+
+```bash
+import React, { useEffect, useState } from "react";
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+}
+
+const Product = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Got products data:", data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products. Please try again later.");
+        setLoading(false);
+      });
+  }, []);
+
+  // Loading and error handling code...
+};
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Features of the Fetching Logic
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ✅ Uses useEffect to fetch data on component mount
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- ✅ Handles loading and error states
+
+- ✅ Validates API response and logs results for debugging
+
+- ✅ Stores data in local state for rendering
+
+This logic can be found in the Product.tsx component of the project.
+
+## 👨‍💻 Built By
+
+Sol Monineath 💻
+
+## 📦 Installation
+
+1. clone this project:
+
+```bash
+git clone https://github.com/neathcmd/HomeworkAPIs.git
+cd fakestore
+
 ```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+## 📝 License
+
+This project is for educational/demo purposes and is not intended for commercial use.
