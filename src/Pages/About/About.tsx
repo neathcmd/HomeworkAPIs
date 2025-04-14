@@ -23,7 +23,7 @@ const About: React.FC = () => {
             provide a realistic, fun, and functional eCommerce simulation.
           </p>
           <p className="text-sm text-gray-500">
-            Built with 💻 by Sol Monineath
+            Built with React, TypeScript, and Tailwind CSS by Sol Monineath
           </p>
         </div>
       </div>
